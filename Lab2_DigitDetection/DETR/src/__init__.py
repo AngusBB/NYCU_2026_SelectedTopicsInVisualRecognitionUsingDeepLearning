@@ -1,0 +1,2 @@
+"""Digit detection homework package."""
+

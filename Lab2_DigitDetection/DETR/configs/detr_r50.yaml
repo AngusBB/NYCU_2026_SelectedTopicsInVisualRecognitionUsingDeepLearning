@@ -1,0 +1,67 @@
+experiment_name: detr_r50
+
+model:
+  num_classes: 10
+  category_ids: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+  class_names: ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
+  backbone: resnet50
+  backbone_pretrained: true
+  dilation: true
+  hidden_dim: 256
+  num_queries: 300
+  dropout: 0.1
+  num_heads: 8
+  dim_feedforward: 2048
+  encoder_layers: 6
+  decoder_layers: 6
+  pre_norm: true
+  aux_loss: true
+  with_box_refine: true
+
+loss:
+  class_loss_coef: 1.0
+  bbox_loss_coef: 5.0
+  giou_loss_coef: 2.0
+  eos_coef: 0.1
+  label_smoothing: 0.05
+
+data:
+  image_mean: [0.485, 0.456, 0.406]
+  image_std: [0.229, 0.224, 0.225]
+  train_scales: [320, 384, 448, 512, 576, 640, 704]
+  eval_scales: [640]
+  max_size: 1280
+  batch_size: 8
+  num_workers: 8
+  cache_images: false
+  mosaic_probability: 0.25
+  mosaic_size: 704
+  mosaic_center_ratio_range: [0.4, 0.6]
+  mosaic_min_box_size: 2.0
+  mixup_probability: 0.15
+  mixup_alpha: 8.0
+  mixup_min_box_size: 2.0
+
+train:
+  seed: 3407
+  epochs: 150
+  warmup_epochs: 5
+  lr: 0.0001
+  lr_backbone: 0.00001
+  weight_decay: 0.0001
+  clip_max_norm: 0.1
+  amp: true
+  ema_decay: 0.9998
+  grad_accum_steps: 1
+  print_freq: 200
+  eval_every: 1
+  save_every: 5
+  score_threshold: 0.05
+  tensorboard_num_images: 16
+  tensorboard_image_every: 4
+
+inference:
+  score_threshold: 0.05
+  max_detections_per_image: 300
+  tta_scales: [512, 640, 768]
+  nms_iou_threshold: 0.65
