@@ -24,6 +24,22 @@ ZIP submissions, and generated leaderboard artifacts are intentionally excluded.
 
 ## Environment Setup
 
+Download the dataset
+
+From the repository root:
+
+```bash
+bash download_dataset.sh
+```
+
+Expected dataset locations:
+
+```text
+data/train/
+data/test/
+data/test_image_name_to_ids.json
+```
+
 The scripts assume the project root layout used during development:
 
 ```text
