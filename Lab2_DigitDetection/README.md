@@ -1,5 +1,8 @@
 # LAB2 Digit Detection
 
+- Student ID: 314554004
+- Name: 黃靖恩
+
 This repository contains the full implementation for Lab 2: digit detection in
 natural images.  The project is organized into two detector codebases:
 
